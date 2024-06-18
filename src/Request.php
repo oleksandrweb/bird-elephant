@@ -200,7 +200,7 @@ class Request
         $additionalOwnersParam = '';
 
         foreach ($additionalOwners as $additionalOwner) {
-            $additionalOwnersParam .= "&{$additionalOwner}";
+            $additionalOwnersParam .= "&additional_owners={$additionalOwner}";
         }
 
         try {
