@@ -136,11 +136,12 @@ class Tweets
 
     /**
      * @param $file
+     * @param array $additionalOwners
      * @return object
      * @throws GuzzleException
      */
-    public function upload($file): object
+    public function upload($file, array $additionalOwners = []): object
     {
-        return $this->manageTweets->mediaUpload($file);
+        return $this->manageTweets->mediaUpload($file, $additionalOwners);
     }
 }

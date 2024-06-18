@@ -60,12 +60,13 @@ class ManageTweets extends ApiBase
      * media upload not yet available on v2
      *
      * @param string $file
+     * @param array $additionalOwners
      * @return object
      * @throws GuzzleException
      */
-    public function mediaUpload(string $file): object
+    public function mediaUpload(string $file, array $additionalOwners): object
     {
         $request = new Request($this->credentials);
-        return $request->uploadMedia($file);
+        return $request->uploadMedia($file, $additionalOwners);
     }
 }

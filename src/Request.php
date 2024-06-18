@@ -179,7 +179,7 @@ class Request
      * @param $media
      * @throws GuzzleException
      */
-    public function uploadMedia($media)
+    public function uploadMedia($media, array $additionalOwners)
     {
         $stack = HandlerStack::create();
 
@@ -197,8 +197,14 @@ class Request
             'handler' => $stack
         ]);
 
+        $additionalOwnersParam = '';
+
+        foreach ($additionalOwners as $additionalOwner) {
+            $additionalOwnersParam .= "&{$additionalOwner}";
+        }
+
         try {
-            $request  = $client->request('POST', 'media/upload.json', [
+            $request  = $client->request('POST', "media/upload.json?media_category=TWEET_IMAGE{$additionalOwnersParam}", [
                 'auth' => 'oauth',
                 'multipart' => [
                     [
