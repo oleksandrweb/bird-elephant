@@ -197,14 +197,10 @@ class Request
             'handler' => $stack
         ]);
 
-        $additionalOwnersParam = '';
-
-        foreach ($additionalOwners as $additionalOwner) {
-            $additionalOwnersParam .= "&additional_owners={$additionalOwner}";
-        }
+        $additionalOwnersString = implode(',', $additionalOwners);
 
         try {
-            $request  = $client->request('POST', "media/upload.json?media_category=TWEET_IMAGE{$additionalOwnersParam}", [
+            $request  = $client->request('POST', "media/upload.json?media_category=TWEET_IMAGE&additional_owners={$additionalOwnersString}", [
                 'auth' => 'oauth',
                 'multipart' => [
                     [
